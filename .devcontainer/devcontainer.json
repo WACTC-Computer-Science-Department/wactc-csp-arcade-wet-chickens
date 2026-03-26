@@ -1,5 +1,6 @@
 {
   "name": "Team Game - OOP",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -16,8 +17,16 @@
         "editor.bracketPairColorization.enabled": true,
         "editor.minimap.enabled": false,
         "files.trimTrailingWhitespace": true,
-        "files.insertFinalNewline": true
+        "files.insertFinalNewline": true,
+        "liveServer.settings.port": 5500
       }
+    }
+  },
+  "forwardPorts": [5500],
+  "portsAttributes": {
+    "5500": {
+      "label": "Game Preview",
+      "onAutoForward": "openBrowser"
     }
   }
 }
