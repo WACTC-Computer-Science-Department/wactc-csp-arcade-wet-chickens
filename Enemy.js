@@ -1,5 +1,5 @@
 // ============================================
-// ENEMY — Your name here!
+// ENEMY — Goblins, Goblin Brute, Spear Goblin, Goblin King-Boss
 // Extends GameObject with AI behavior.
 // Create subclasses for different enemy types!
 // ============================================
@@ -8,9 +8,10 @@ class Enemy extends GameObject {
   constructor(x, y, size, speed) {
     super(x, y, size || 12);
     this.speed = speed || 2;
-    this.health = 30;
+    this.health = 50;
     this.damage = 10;
     this.color = '#ff4444';
+    this.aiType = 'chase', this.target = null
 
     // TODO: Add additional enemy properties
     // Examples: this.aiType = 'chase', this.target = null
@@ -21,13 +22,13 @@ class Enemy extends GameObject {
     // Example: Move toward the player
     //
     // To chase a target:
-    // let dx = target.x - this.x;
-    // let dy = target.y - this.y;
-    // let distance = dist(this.x, this.y, target.x, target.y);
-    // if (distance > 0) {
-    //   this.x += (dx / distance) * this.speed;
-    //   this.y += (dy / distance) * this.speed;
-    // }
+    let dx = target.x - this.x;
+    let dy = target.y - this.y;
+    let distance = dist(this.x, this.y, target.x, target.y);
+    if (distance > 0) {
+       this.x += (dx / distance) * this.speed;
+       this.y += (dy / distance) * this.speed;
+    }
   }
 
   draw() {
@@ -43,6 +44,7 @@ class Enemy extends GameObject {
     }
   }
 
+  
   // TODO: Add enemy-specific methods
   // Examples: patrol(), attack(), dropLoot()
 }
@@ -54,35 +56,35 @@ class Enemy extends GameObject {
 // TODO: Create enemy subclasses with different behaviors
 //
 // Example:
-// class FastEnemy extends Enemy {
-//   constructor(x, y) {
-//     super(x, y, 8, 4);  // smaller, faster
-//     this.color = '#ff8800';
-//     this.health = 15;
-//     this.damage = 5;
-//   }
-// }
-//
-// class TankEnemy extends Enemy {
-//   constructor(x, y) {
-//     super(x, y, 20, 1);  // bigger, slower
-//     this.color = '#cc0000';
-//     this.health = 100;
-//     this.damage = 25;
-//   }
-// }
-//
-// class BossEnemy extends Enemy {
-//   constructor(x, y) {
-//     super(x, y, 30, 0.5);
-//     this.color = '#9900ff';
-//     this.health = 500;
-//     this.damage = 40;
-//     this.phase = 1;
-//   }
-//
-//   update() {
-//     super.update();  // call parent AI
-//     // Add boss-specific behavior based on this.phase
-//   }
-// }
+ class FastEnemy extends Enemy {
+   constructor(x, y) {
+    super(x, y, 8, 4);  // smaller, faster
+    this.color = '#ff8800';
+     this.health = 15;
+     this.damage = 5;
+   }
+ }
+
+ class TankEnemy extends Enemy {
+   constructor(x, y) {
+     super(x, y, 20, 1);  // bigger, slower
+     this.color = '#cc0000';
+     this.health = 100;
+     this.damage = 25;
+   }
+ }
+
+ class BossEnemy extends Enemy {
+   constructor(x, y) {
+     super(x, y, 30, 0.5);
+     this.color = '#9900ff';
+     this.health = 500;
+     this.damage = 40;
+     this.phase = 1;
+   }
+
+   update() {
+     super.update();  // call parent AI
+     // Add boss-specific behavior based on this.phase
+   }
+ }
